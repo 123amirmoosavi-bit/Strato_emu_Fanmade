@@ -24,7 +24,14 @@ jobs:
 
 
       - name: Build APK
-        run: ./gradlew assembleDebug
+        run: |
+    GRADLE_PATH=$(find . -name "gradlew" -print -quit)
+    if [ -z "$GRADLE_PATH" ]; then
+      echo "Gradlew file not found!" && exit 1
+    fi
+    cd $(dirname "$GRADLE_PATH")
+    ./gradlew assembleDebug
+
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
