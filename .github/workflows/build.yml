@@ -25,12 +25,12 @@ jobs:
 
       - name: Build APK
         run: |
-    GRADLE_PATH=$(find . -name "gradlew" -print -quit)
-    if [ -z "$GRADLE_PATH" ]; then
-      echo "Gradlew file not found!" && exit 1
-    fi
-    cd $(dirname "$GRADLE_PATH")
-    ./gradlew assembleDebug
+         GRADLE_PATH=$(find . -name "gradlew" -print -quit)
+         if [ -z "$GRADLE_PATH" ]; then
+           echo "Gradlew file not found!" && exit 1
+         fi
+         cd $(dirname "$GRADLE_PATH")
+         ./gradlew assembleDebug
 
 
       - name: Upload APK
