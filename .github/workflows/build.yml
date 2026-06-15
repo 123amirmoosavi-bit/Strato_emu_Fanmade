@@ -29,7 +29,6 @@ jobs:
 
     - name: Build APK
       run: |
-        # ۱. استخراج فایل زیپ سورس‌کد
         echo "Unzipping source code..."
         unzip -q Strato_SC.zip -d extracted_src
         
