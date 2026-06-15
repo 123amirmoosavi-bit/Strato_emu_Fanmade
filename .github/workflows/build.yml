@@ -32,17 +32,13 @@ jobs:
         echo "Unzipping source code..."
         unzip -q Strato_SC.zip -d extracted_src
         
-        ANDROID_DIR=$(find extracted_src -name "build.gradle" -o -name "build.gradle.kts" -print -quit | xargs dirname)
+        echo "Checking inside extracted_src:"
+        ls -la extracted_src
         
-        if [ -z "$ANDROID_DIR" ]; then
-          echo "ERROR: Android project structure not found inside the zip!"
-          exit 1
-        fi
-        
-        cd "$ANDROID_DIR"
-        
-        gradle wrapper
-        ./gradlew assembleDebug
+        echo "Searching for any gradle files:"
+        find extracted_src -maxdepth 3
+        exit 1
+
 
 
 
