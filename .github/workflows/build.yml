@@ -29,21 +29,19 @@ jobs:
 
     - name: Build APK
       run: |
-        echo "Unzipping source code..."
         unzip -q Strato_SC.zip -d extracted_src
+       
+        cd extracted_src
         
-        echo "Checking inside extracted_src:"
-        ls -la extracted_src
-        
-        echo "Searching for any gradle files:"
-        find extracted_src -maxdepth 3
-        exit 1
+        chmod +x gradlew
+       
+        ./gradlew assembleDebug
 
 
 
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: Strato-Experimental-APK
-        path: "**/build/outputs/apk/debug/*.apk"
+        - name: Upload APK
+          uses: actions/upload-artifact@v4
+          with:
+           name: Strato-Experimental-APK
+           path: "extracted_src/app/build/outputs/apk/debug/*.apk"
