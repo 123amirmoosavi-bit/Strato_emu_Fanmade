@@ -31,7 +31,7 @@ jobs:
         unzip -q Strato_SC.zip -d extracted_src
         cd extracted_src
         chmod +x gradlew
-        ./gradlew assembleDebug -Pandroid.ndkVersion=25.2.9519653
+        ./gradlew assembleDebug -Pandroid.ndkVersion=25.2.9519653 --info
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
