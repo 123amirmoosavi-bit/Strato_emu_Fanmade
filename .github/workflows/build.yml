@@ -29,13 +29,20 @@ jobs:
 
     - name: Build APK
       run: |
-        ANDROID_DIR=$(find . -name "build.gradle" -print -quit | xargs dirname)
-        if [ -z "$ANDROID_DIR" ]; then
-          echo "Android project directory not found!" && exit 1
+        if [ -f "./build.gradle" ] || [ -f "./build.gradle.kts" ]; then
+          gradle wrapper
+          ./gradlew assembleDebug
+        elif [ -f "./app/build.gradle" ] || [ -f "./app/build.gradle.kts" ]; then
+          cd app
+          gradle wrapper
+          ./gradlew assembleDebug
+        else
+          echo "ERROR: No build.gradle or build.gradle.kts found in root or app folder!"
+          echo "Current directory contents:"
+          ls -la
+          exit 1
         fi
-        cd "$ANDROID_DIR"
-        gradle wrapper
-        ./gradlew assembleDebug
+
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
