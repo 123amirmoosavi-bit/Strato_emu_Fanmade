@@ -28,13 +28,9 @@ jobs:
 
     - name: Build APK
       run: |
-
         unzip -q Strato_SC.zip -d extracted_src
-        
         cd extracted_src
-        
-        chmod +x graStrato-E
-        
+        chmod +x gradlew
         ./gradlew assembleDebug -Pandroid.ndkVersion=25.2.9519653
 
     - name: Upload APK
