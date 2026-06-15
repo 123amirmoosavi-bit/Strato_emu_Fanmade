@@ -20,8 +20,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Make Gradle Executable
-        run: chmod +x gradlew
-        working-directory: ./
+        run: find . -name "gradlew" -exec chmod +x {} \;
 
 
       - name: Build APK
